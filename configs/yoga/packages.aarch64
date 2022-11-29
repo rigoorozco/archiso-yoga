@@ -119,5 +119,9 @@ zsh
 
 #
 # Custom Packages go here
-linux-x13s
-x13s-firmware
+linux-aarch64-rc
+linux-firmware-qcom
+pd-mapper
+qmic
+qrtr
+rmtfs
