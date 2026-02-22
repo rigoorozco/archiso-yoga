@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
-iso_name="archlinux-x13s"
+iso_name="archlinux-yoga"
 iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
 iso_publisher="Alex Robinson <alex@ironrobin.net>"
-iso_application="ARM64 Arch Linux Live/Rescue Disk for ThinkPad X13s"
+iso_application="ARM64 Arch Linux Live/Rescue Disk for Yoga C630"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')
 bootmodes=('uefi.systemd-boot')
 arch='aarch64'
-dtb='sc8280xp-lenovo-thinkpad-x13s.dtb'
+dtb='sdm850-lenovo-yoga-c630.dtb'
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
 airootfs_image_tool_options=('-comp' 'xz' '-Xbcj' 'x86' '-b' '1M' '-Xdict-size' '1M')

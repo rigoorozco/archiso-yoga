@@ -118,4 +118,9 @@ xl2tpd
 zsh
 
 # Custom Packages go here
-linux-x13s
+linux-yoga
+linux-firmware-qcom
+# pd-mapper
+# qmic
+qrtr
+rmtfs
