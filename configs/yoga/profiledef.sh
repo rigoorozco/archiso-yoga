@@ -8,8 +8,9 @@ iso_application="ARM64 Arch Linux Live/Rescue Disk for Yoga C630"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
 install_dir="arch"
 buildmodes=('iso')
-bootmodes=('uefi.systemd-boot')
+bootmodes=('uefi.grub')
 arch='aarch64'
+kernel_format='Image'
 dtb='sdm850-lenovo-yoga-c630.dtb'
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
