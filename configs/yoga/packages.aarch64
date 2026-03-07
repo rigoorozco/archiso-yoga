@@ -119,8 +119,8 @@ zsh
 
 # Custom Packages go here
 linux-yoga
-linux-firmware-qcom
-# pd-mapper
-# qmic
+firmware-lenovo-yoga-c630
+pd-mapper
+qmic
 qrtr
 rmtfs
