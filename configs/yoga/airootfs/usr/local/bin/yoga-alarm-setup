@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_NAME="yoga-alarm"
+REPO_URL="https://github.com/rigoorozco/yoga-alarm/releases/download/packages-latest"
+KEY_ID="041A82E390EAD451"
+KEY_URL="${REPO_URL}/yoga-alarm-packaging.pub"
+KEY_FILE="/tmp/yoga-alarm-packaging.pub"
+
+echo "Checking for internet connection"
+if ! ping -c 1 github.com >/dev/null 2>&1; then
+    echo "No internet connection detected. Please connect to the internet and try again."
+    exit 1
+fi
+
+echo "Checking for ${REPO_NAME} repository in pacman"
+if grep -q "^\[${REPO_NAME}\]$" /etc/pacman.conf; then
+    echo "${REPO_NAME} repository already in pacman"
+else
+    echo "Adding ${REPO_NAME} repository to pacman"
+    cat >> /etc/pacman.conf <<EOF
+
+[${REPO_NAME}]
+SigLevel = Required DatabaseOptional
+Server = ${REPO_URL}
+EOF
+fi
+
+echo "Checking for ${REPO_NAME} package signing key in pacman"
+if pacman-key --list-keys "${KEY_ID}" >/dev/null 2>&1; then
+    echo "${REPO_NAME} package signing key already in pacman"
+else
+    echo "Adding ${REPO_NAME} package signing key to pacman"
+    curl -fsSL "${KEY_URL}" -o "${KEY_FILE}"
+    pacman-key --add "${KEY_FILE}"
+    pacman-key --lsign-key "${KEY_ID}"
+fi
+
+echo "Updating pacman database"
+pacman -Sy
